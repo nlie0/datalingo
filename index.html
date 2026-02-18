@@ -271,6 +271,7 @@
       font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem;
       display: flex; align-items: center; justify-content: center;
       margin: 0 auto 1rem;
+      object-fit: cover;
       box-shadow: 0 4px 16px rgba(34,197,94,0.3);
     }
     .pipe-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; margin-bottom: 0.5rem; }
@@ -363,14 +364,28 @@
     }
     .team-card:hover { transform: translateY(-4px); }
     .team-avatar {
-      width: 64px; height: 64px; border-radius: 50%;
+      width: 100px; height: 100px; border-radius: 50%;
       background: var(--green); color: white;
       font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800;
       display: flex; align-items: center; justify-content: center;
       margin: 0 auto 1rem;
+      object-fit: cover;
     }
     .team-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; }
     .team-role { font-size: 0.8rem; color: var(--ink-soft); margin-top: 4px; }
+    .team-socials {
+      display: flex; gap: 0.75rem; justify-content: center; margin-top: 1rem;
+    }
+    .team-social-link {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--green-light); color: var(--green-dark);
+      text-decoration: none; font-size: 1rem;
+      transition: all 0.2s;
+    }
+    .team-social-link:hover {
+      background: var(--green); color: white; transform: translateY(-2px);
+    }
 
     /* ── CTA ── */
     #cta {
@@ -751,44 +766,76 @@
     </div>
     <div class="team-grid">
       <div class="team-card">
-        <div class="team-avatar">NK</div>
+        <img src="headshots/norah.jpeg" alt="Norah Kerendian" class="team-avatar">
         <div class="team-name">Norah Kerendian</div>
         <div class="team-role">AI Engineer</div>
+        <div class="team-socials">
+          <a href="https://www.linkedin.com/in/norahkerendian/" target="_blank" class="team-social-link" title="LinkedIn">in</a>
+          <a href="mailto:nokerendian@ucsd.edu" class="team-social-link" title="Email">✉</a>
+        </div>
       </div>
       <div class="team-card">
-        <div class="team-avatar">NL</div>
+        <img src="headshots/natasha.jpeg" alt="Natasha Lie" class="team-avatar">
         <div class="team-name">Natasha Lie</div>
         <div class="team-role">Frontend Developer</div>
+        <div class="team-socials">
+          <a href="https://www.linkedin.com/in/natasha-lie/" target="_blank" class="team-social-link" title="LinkedIn">in</a>
+          <a href="mailto:nlie@ucsd.edu" class="team-social-link" title="Email">✉</a>
+        </div>
       </div>
       <div class="team-card">
-        <div class="team-avatar">YZ</div>
+        <img src="headshots/claire.jpeg" alt="Yiran Zhao" class="team-avatar">
         <div class="team-name">Yiran Zhao</div>
         <div class="team-role">Database Engineer</div>
+        <div class="team-socials">
+          <a href="https://www.linkedin.com/in/yiran-zhao-483280253/" target="_blank" class="team-social-link" title="LinkedIn">in</a>
+          <a href="mailto:yiz219@ucsd.edu " class="team-social-link" title="Email">✉</a>
+        </div>
       </div>
       <div class="team-card">
-        <div class="team-avatar">CK</div>
+        <img src="headshots/chloe.jpeg" alt="Chloe Kim" class="team-avatar">
         <div class="team-name">Chloe Kim</div>
         <div class="team-role">Frontend Developer</div>
+        <div class="team-socials">
+          <a href="https://www.linkedin.com/in/chloekim10/" target="_blank" class="team-social-link" title="LinkedIn">in</a>
+          <a href="mailto:sek034@ucsd.edu " class="team-social-link" title="Email">✉</a>
+        </div>
       </div>
       <div class="team-card">
-        <div class="team-avatar">SS</div>
+        <img src="headshots/sadrac.jpeg" alt="Sadrac Santacruz" class="team-avatar">
         <div class="team-name">Sadrac Santacruz</div>
         <div class="team-role">AI Engineer</div>
+        <div class="team-socials">
+          <a href="https://www.linkedin.com/in/sadrac-santacruz/" target="_blank" class="team-social-link" title="LinkedIn">in</a>
+          <a href="mailto:ssantacruzibarra@ucsd.edu " class="team-social-link" title="Email">✉</a>
+        </div>
       </div>
       <div class="team-card">
-        <div class="team-avatar">KW</div>
+        <img src="headshots/kevin.jpeg" alt="Kevin Wu" class="team-avatar">
         <div class="team-name">Kevin Wu</div>
         <div class="team-role">Database Engineer</div>
+        <div class="team-socials">
+          <a href="https://www.linkedin.com/in/kevin-wu-46894b2b0/" target="_blank" class="team-social-link" title="LinkedIn">in</a>
+          <a href="mailto:kew036@ucsd.edu " class="team-social-link" title="Email">✉</a>
+        </div>
       </div>
       <div class="team-card">
-        <div class="team-avatar">OA</div>
+        <img src="headshots/omar.jpeg" alt="Omar Ali" class="team-avatar">
         <div class="team-name">Omar Ali</div>
         <div class="team-role">Recommender System Developer</div>
+        <div class="team-socials">
+          <a href="https://www.linkedin.com/in/omar-aliucsd/" target="_blank" class="team-social-link" title="LinkedIn">in</a>
+          <a href="mailto:omali@ucsd.edu " class="team-social-link" title="Email">✉</a>
+        </div>
       </div>
       <div class="team-card">
-        <div class="team-avatar">ER</div>
+        <img src="headshots/eshaan.jpeg" alt="Eshaan Roy" class="team-avatar">
         <div class="team-name">Eshaan Roy</div>
         <div class="team-role">Recommender System Developer</div>
+        <div class="team-socials">
+          <a href="https://www.linkedin.com/in/eshaan-roy-36538220b/" target="_blank" class="team-social-link" title="LinkedIn">in</a>
+          <a href="mailto:eroy@ucsd.edu" class="team-social-link" title="Email">✉</a>
+        </div>
       </div>
     </div>
   </section>
