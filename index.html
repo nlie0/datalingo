@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DataLingo — Learn Python & Data Science</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #22c55e;
+      --green-dark: #16a34a;
+      --green-light: #dcfce7;
+      --ink: #0d1f13;
+      --ink-mid: #374843;
+      --ink-soft: #6b7c75;
+      --bg: #f5faf6;
+      --white: #ffffff;
+      --card-border: rgba(34,197,94,0.15);
+      --shadow: 0 4px 24px rgba(13,31,19,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5vw; height: 64px;
+      background: rgba(245,250,246,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+    .nav-logo-icon { font-size: 1.4rem; }
+    .nav-logo-text {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800; font-size: 1.15rem;
+      color: var(--ink);
+    }
+    .nav-logo-text span { color: var(--green); }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav ul a {
+      text-decoration: none; color: var(--ink-mid);
+      font-size: 0.9rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: var(--green); }
+    .nav-cta {
+      background: var(--green); color: white !important;
+      padding: 8px 20px; border-radius: 999px;
+      font-weight: 600 !important; font-size: 0.85rem !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--green-dark) !important; color: white !important; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 4rem;
+      padding: 120px 5vw 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-blob {
+      position: absolute; border-radius: 50%;
+      background: radial-gradient(circle, rgba(34,197,94,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .blob-1 { width: 600px; height: 600px; top: -100px; right: -100px; }
+    .blob-2 { width: 400px; height: 400px; bottom: -50px; left: -80px; }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--green-light); color: var(--green-dark);
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em;
+      padding: 6px 14px; border-radius: 999px;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+    }
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+      font-weight: 800; line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+    .hero-title .accent { color: var(--green); }
+    .hero-desc {
+      font-size: 1.05rem; color: var(--ink-mid);
+      max-width: 480px; margin-bottom: 2rem;
+      font-weight: 300; line-height: 1.75;
+    }
+    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--green); color: white;
+      padding: 14px 32px; border-radius: 999px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700; font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      box-shadow: 0 4px 16px rgba(34,197,94,0.3);
+    }
+    .btn-primary:hover { background: var(--green-dark); transform: translateY(-2px); }
+    .btn-outline {
+      border: 2px solid var(--green); color: var(--green);
+      padding: 14px 32px; border-radius: 999px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700; font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover { background: var(--green-light); transform: translateY(-2px); }
+    .hero-stats {
+      display: flex; gap: 2.5rem; margin-top: 2.5rem;
+    }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.6rem; font-weight: 800; color: var(--green);
+    }
+    .stat-label { font-size: 0.8rem; color: var(--ink-soft); font-weight: 500; }
+
+    /* hero screenshot mockup */
+    .hero-visual {
+      position: relative; display: flex; justify-content: center;
+    }
+    .mockup-frame {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 24px 80px rgba(13,31,19,0.15);
+      overflow: hidden;
+      width: 100%; max-width: 520px;
+      border: 1px solid var(--card-border);
+      transform: perspective(1000px) rotateY(-4deg) rotateX(2deg);
+      transition: transform 0.4s ease;
+    }
+    .mockup-frame:hover { transform: perspective(1000px) rotateY(0deg) rotateX(0deg); }
+    .mockup-bar {
+      background: #f0faf2; padding: 12px 16px;
+      display: flex; align-items: center; gap: 8px;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .mockup-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .mockup-dot.r { background: #ff5f57; }
+    .mockup-dot.y { background: #febc2e; }
+    .mockup-dot.g { background: #28c840; }
+    .mockup-url {
+      flex: 1; background: #e8f5eb; border-radius: 6px;
+      padding: 4px 12px; font-size: 0.75rem; color: var(--ink-soft);
+      margin-left: 8px;
+    }
+    .mockup-content { padding: 24px; }
+    .mockup-lesson-header {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 1.1rem; color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .mockup-topic { font-size: 0.8rem; color: var(--green); font-weight: 500; margin-bottom: 16px; }
+    .mockup-lesson-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 14px; border-radius: 12px;
+      margin-bottom: 8px; background: var(--bg);
+      border: 1px solid transparent;
+    }
+    .mockup-lesson-item.active { background: #f0fdf4; border-color: rgba(34,197,94,0.3); }
+    .mockup-num {
+      width: 28px; height: 28px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 700;
+    }
+    .mockup-num.done { background: var(--green); color: white; }
+    .mockup-num.prog { background: #3b82f6; color: white; }
+    .mockup-num.lock { background: #e2e8f0; color: #94a3b8; }
+    .mockup-lesson-name { font-size: 0.85rem; font-weight: 500; color: var(--ink); }
+    .mockup-lesson-sub { font-size: 0.72rem; color: var(--ink-soft); }
+    .mockup-progress-label {
+      font-size: 0.75rem; color: var(--ink-soft);
+      display: flex; justify-content: space-between;
+      margin-top: 16px; margin-bottom: 6px;
+    }
+    .mockup-progress-bar { background: #e8f5eb; border-radius: 999px; height: 6px; overflow: hidden; }
+    .mockup-progress-fill { height: 100%; border-radius: 999px; background: var(--green); width: 60%; }
+    .badge-streak {
+      position: absolute; top: -12px; right: -12px;
+      background: #f59e0b; color: white;
+      font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700;
+      padding: 6px 14px; border-radius: 999px;
+      box-shadow: 0 4px 12px rgba(245,158,11,0.3);
+    }
+
+    /* ── SECTIONS SHARED ── */
+    section { padding: 100px 5vw; }
+    .section-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--green-light); color: var(--green-dark);
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em;
+      padding: 5px 12px; border-radius: 999px;
+      margin-bottom: 1rem; text-transform: uppercase;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 800; line-height: 1.15;
+      margin-bottom: 1rem; color: var(--ink);
+    }
+    .section-subtitle {
+      font-size: 1rem; color: var(--ink-mid);
+      max-width: 560px; font-weight: 300;
+    }
+    .section-header { margin-bottom: 3.5rem; }
+
+    /* ── ABOUT ── */
+    #about { background: white; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .about-feature {
+      display: flex; gap: 1rem; margin-bottom: 2rem;
+    }
+    .feature-icon {
+      width: 44px; height: 44px; min-width: 44px;
+      background: var(--green-light); color: var(--green-dark);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+    .feature-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; margin-bottom: 4px; }
+    .feature-desc { font-size: 0.9rem; color: var(--ink-mid); line-height: 1.65; }
+    .about-quote {
+      background: var(--bg); border-left: 4px solid var(--green);
+      border-radius: 0 16px 16px 0; padding: 2rem;
+      font-size: 1.05rem; color: var(--ink-mid);
+      font-style: italic; line-height: 1.75;
+    }
+
+    /* ── PIPELINE ── */
+    #pipeline { background: var(--bg); }
+    .pipeline-steps {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem; position: relative;
+    }
+    .pipeline-steps::before {
+      content: ''; position: absolute;
+      top: 44px; left: 10%; right: 10%; height: 2px;
+      background: linear-gradient(90deg, var(--green), transparent);
+      z-index: 0;
+    }
+    .pipe-step {
+      background: white; border-radius: 20px; padding: 2rem 1.5rem;
+      text-align: center; position: relative; z-index: 1;
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow);
+      transition: transform 0.2s;
+    }
+    .pipe-step:hover { transform: translateY(-4px); }
+    .pipe-num {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--green); color: white;
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1rem;
+      box-shadow: 0 4px 16px rgba(34,197,94,0.3);
+    }
+    .pipe-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .pipe-desc { font-size: 0.85rem; color: var(--ink-mid); line-height: 1.6; }
+    .pipe-tag {
+      display: inline-block; margin-top: 0.75rem;
+      background: var(--green-light); color: var(--green-dark);
+      font-size: 0.7rem; font-weight: 600; padding: 3px 10px; border-radius: 999px;
+    }
+
+    /* ── FEATURES ── */
+    #features { background: white; }
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .feat-card {
+      background: var(--bg); border-radius: 20px; padding: 2rem;
+      border: 1px solid var(--card-border);
+      transition: all 0.25s;
+      position: relative; overflow: hidden;
+    }
+    .feat-card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: var(--green); transform: scaleX(0);
+      transition: transform 0.3s; transform-origin: left;
+    }
+    .feat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .feat-card:hover::before { transform: scaleX(1); }
+    .feat-emoji { font-size: 2rem; margin-bottom: 1rem; display: block; }
+    .feat-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 0.5rem; }
+    .feat-desc { font-size: 0.88rem; color: var(--ink-mid); line-height: 1.65; }
+
+    /* ── SCREENSHOTS ── */
+    #screenshots { background: var(--ink); color: white; }
+    #screenshots .section-title { color: white; }
+    #screenshots .section-subtitle { color: rgba(255,255,255,0.6); }
+    #screenshots .section-eyebrow { background: rgba(34,197,94,0.15); color: var(--green); }
+    .screenshots-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    }
+    .screenshot-card {
+      background: rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: transform 0.25s;
+    }
+    .screenshot-card:hover { transform: scale(1.02); }
+    .screenshot-placeholder {
+      aspect-ratio: 16/10;
+      background: linear-gradient(135deg, rgba(34,197,94,0.15), rgba(34,197,94,0.05));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem;
+      position: relative; overflow: hidden;
+    }
+    .screenshot-label {
+      padding: 14px 16px;
+      font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.85rem;
+      color: rgba(255,255,255,0.85);
+    }
+    .screenshot-sublabel { font-size: 0.75rem; color: rgba(255,255,255,0.4); font-weight: 400; }
+
+    /* ── TECH STACK ── */
+    #tech { background: var(--bg); }
+    .tech-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .tech-col {
+      background: white; border-radius: 20px; padding: 2rem;
+      border: 1px solid var(--card-border);
+    }
+    .tech-col-title {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: 1rem; margin-bottom: 1.25rem;
+      display: flex; align-items: center; gap: 8px;
+      padding-bottom: 0.75rem; border-bottom: 2px solid var(--green-light);
+    }
+    .tech-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--bg); border: 1px solid var(--card-border);
+      padding: 6px 12px; border-radius: 8px;
+      font-size: 0.82rem; font-weight: 500;
+      margin: 4px; color: var(--ink-mid);
+    }
+
+    /* ── TEAM ── */
+    #team { background: white; }
+    .team-grid { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+    .team-card {
+      background: var(--bg); border-radius: 20px;
+      padding: 2rem 2.5rem; text-align: center;
+      border: 1px solid var(--card-border);
+      min-width: 180px;
+      transition: transform 0.2s;
+    }
+    .team-card:hover { transform: translateY(-4px); }
+    .team-avatar {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: var(--green); color: white;
+      font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1rem;
+    }
+    .team-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; }
+    .team-role { font-size: 0.8rem; color: var(--ink-soft); margin-top: 4px; }
+
+    /* ── CTA ── */
+    #cta {
+      background: linear-gradient(135deg, var(--ink) 0%, #1a3d25 100%);
+      color: white; text-align: center;
+      padding: 120px 5vw;
+    }
+    #cta .section-title { color: white; }
+    #cta .section-subtitle { color: rgba(255,255,255,0.65); max-width: 500px; margin: 0 auto 2.5rem; }
+    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-white {
+      background: white; color: var(--ink);
+      padding: 14px 36px; border-radius: 999px;
+      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+    .btn-ghost {
+      border: 2px solid rgba(255,255,255,0.3); color: white;
+      padding: 14px 36px; border-radius: 999px;
+      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .btn-ghost:hover { border-color: white; background: rgba(255,255,255,0.05); transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink); color: rgba(255,255,255,0.5);
+      text-align: center; padding: 2rem 5vw;
+      font-size: 0.82rem; border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    footer a { color: var(--green); text-decoration: none; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero-left > * { animation: fadeUp 0.6s ease both; }
+    .hero-left > *:nth-child(1) { animation-delay: 0.1s; }
+    .hero-left > *:nth-child(2) { animation-delay: 0.2s; }
+    .hero-left > *:nth-child(3) { animation-delay: 0.3s; }
+    .hero-left > *:nth-child(4) { animation-delay: 0.4s; }
+    .hero-left > *:nth-child(5) { animation-delay: 0.5s; }
+    .hero-visual { animation: fadeUp 0.7s 0.35s ease both; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      #hero { grid-template-columns: 1fr; padding-top: 100px; }
+      .hero-visual { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .pipeline-steps { grid-template-columns: repeat(2, 1fr); }
+      .pipeline-steps::before { display: none; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .screenshots-grid { grid-template-columns: 1fr; }
+      .tech-grid { grid-template-columns: 1fr; }
+      nav ul { display: none; }
+    }
+    @media (max-width: 600px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .pipeline-steps { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">
+      <span class="nav-logo-icon">📊</span>
+      <span class="nav-logo-text">Data<span>Lingo</span></span>
+    </a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#pipeline">How It Works</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#tech">Tech Stack</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#cta" class="nav-cta">Try the App →</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-blob blob-1"></div>
+    <div class="hero-blob blob-2"></div>
+    <div class="hero-left">
+      <div class="hero-eyebrow">🎓 DSC 180B Capstone Project</div>
+      <h1 class="hero-title">
+        Learn Python &<br>
+        Data Science,<br>
+        <span class="accent">one lesson at a time</span>
+      </h1>
+      <p class="hero-desc">
+        DataLingo is an AI-powered learning platform that generates structured, beginner-friendly data science lessons with interactive MCQ quizzes and a built-in tutor chatbot.
+      </p>
+      <div class="hero-buttons">
+        <a href="#" class="btn-primary">🚀 Launch App</a>
+        <a href="#about" class="btn-outline">Learn More</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num">50+</div>
+          <div class="stat-label">Lessons</div>
+        </div>
+        <div>
+          <div class="stat-num">100+</div>
+          <div class="stat-label">Practice MCQs</div>
+        </div>
+        <div>
+          <div class="stat-num">Free</div>
+          <div class="stat-label">Forever</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="badge-streak">🔥 7 Day Streak!</div>
+      <div class="mockup-frame">
+        <div class="mockup-bar">
+          <div class="mockup-dot r"></div>
+          <div class="mockup-dot y"></div>
+          <div class="mockup-dot g"></div>
+          <div class="mockup-url">datalingo.app/lessons</div>
+        </div>
+        <div class="mockup-content">
+          <div class="mockup-lesson-header">Level 1: Fundamentals</div>
+          <div class="mockup-topic">Seeing the World Through Data</div>
+          <div class="mockup-lesson-item">
+            <div class="mockup-num done">✓</div>
+            <div>
+              <div class="mockup-lesson-name">Variables & Types</div>
+              <div class="mockup-lesson-sub">Completed</div>
+            </div>
+          </div>
+          <div class="mockup-lesson-item active">
+            <div class="mockup-num prog">2</div>
+            <div>
+              <div class="mockup-lesson-name">Lists & Loops</div>
+              <div class="mockup-lesson-sub">In Progress ⭐</div>
+            </div>
+          </div>
+          <div class="mockup-lesson-item">
+            <div class="mockup-num lock">🔒</div>
+            <div>
+              <div class="mockup-lesson-name">Functions</div>
+              <div class="mockup-lesson-sub">Locked</div>
+            </div>
+          </div>
+          <div class="mockup-progress-label">
+            <span>Daily Goal Progress</span>
+            <span style="color: var(--green); font-weight: 600;">3/5 lessons</span>
+          </div>
+          <div class="mockup-progress-bar">
+            <div class="mockup-progress-fill"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-grid">
+      <div>
+        <div class="section-eyebrow">🎯 About the Project</div>
+        <h2 class="section-title">What is DataLingo?</h2>
+        <div class="about-feature">
+          <div class="feature-icon">⚡</div>
+          <div>
+            <div class="feature-title">The Problem</div>
+            <p class="feature-desc">Creating quality data science learning content is labor-intensive and hard to scale. Beginners often lack structured, interactive, and affordable resources to get started.</p>
+          </div>
+        </div>
+        <div class="about-feature">
+          <div class="feature-icon">💡</div>
+          <div>
+            <div class="feature-title">Our Solution</div>
+            <p class="feature-desc">We built a full-stack pipeline that uses LLMs to generate structured lesson and quiz datasets, serves them through a FastAPI backend, and delivers them via a beautiful Next.js frontend with an AI tutor.</p>
+          </div>
+        </div>
+        <div class="about-feature">
+          <div class="feature-icon">🎯</div>
+          <div>
+            <div class="feature-title">Who It's For</div>
+            <p class="feature-desc">Absolute beginners who want to learn Python and Data Science through bite-sized, gamified lessons — free, forever.</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="about-quote">
+          "Our goal is to reduce the manual effort of content creation while still giving learners a guided experience with quizzes and tutor-style explanations."
+        </div>
+        <div style="margin-top: 2rem; background: var(--bg); border-radius: 20px; padding: 2rem; border: 1px solid var(--card-border);">
+          <div style="font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; margin-bottom: 1rem; color: var(--ink);">Intended Impact</div>
+          <p style="font-size: 0.88rem; color: var(--ink-mid); line-height: 1.7;">A reproducible AI pipeline for generating lesson content, and a platform that makes that content usable for real learners. DataLingo demonstrates how generative AI can accelerate educational content creation without sacrificing quality.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PIPELINE -->
+  <section id="pipeline">
+    <div class="section-header">
+      <div class="section-eyebrow">⚙️ System Architecture</div>
+      <h2 class="section-title">How DataLingo Works</h2>
+      <p class="section-subtitle">A three-layer system that takes raw data science content and turns it into interactive lessons.</p>
+    </div>
+    <div class="pipeline-steps">
+      <div class="pipe-step">
+        <div class="pipe-num">1</div>
+        <div class="pipe-title">Data Collection</div>
+        <p class="pipe-desc">Raw data science content is collected and cleaned using Python scripts and Jupyter notebooks.</p>
+        <span class="pipe-tag">Python · Notebooks</span>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-num">2</div>
+        <div class="pipe-title">AI Generation</div>
+        <p class="pipe-desc">n8n workflows apply LLM-based generation to transform content into structured lessons and MCQ datasets.</p>
+        <span class="pipe-tag">n8n · OpenAI · JSON</span>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-num">3</div>
+        <div class="pipe-title">Backend API</div>
+        <p class="pipe-desc">FastAPI loads the lesson JSON and exposes endpoints for lessons, questions, and a context-scoped tutor chat.</p>
+        <span class="pipe-tag">FastAPI · Python</span>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-num">4</div>
+        <div class="pipe-title">Frontend App</div>
+        <p class="pipe-desc">Next.js renders lesson content, quizzes, and the embedded AI tutor widget for learners.</p>
+        <span class="pipe-tag">Next.js · React · Tailwind</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="section-header">
+      <div class="section-eyebrow">✨ Key Features</div>
+      <h2 class="section-title">Everything a beginner needs</h2>
+      <p class="section-subtitle">DataLingo combines gamification, AI tutoring, and structured curriculum to make learning stick.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feat-card">
+        <span class="feat-emoji">📚</span>
+        <div class="feat-title">Structured Lessons</div>
+        <p class="feat-desc">Bite-sized, beginner-friendly lessons covering Python basics, statistics, and data science fundamentals — organized by topic and level.</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-emoji">🧩</span>
+        <div class="feat-title">Interactive MCQ Quizzes</div>
+        <p class="feat-desc">Multiple-choice quizzes with difficulty ratings test your understanding after each lesson. Progress is saved automatically.</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-emoji">🤖</span>
+        <div class="feat-title">AI Tutor Chat</div>
+        <p class="feat-desc">Stuck on a question? Ask the built-in tutor for hints, explanations, or breakdowns of each answer choice — without spoiling the answer.</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-emoji">🏆</span>
+        <div class="feat-title">Gamification</div>
+        <p class="feat-desc">Streaks, XP points, locked levels, and daily goals keep learners motivated and coming back.</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-emoji">🔄</span>
+        <div class="feat-title">Reproducible Pipeline</div>
+        <p class="feat-desc">Lesson content is generated via an automated n8n + LLM workflow — making it easy to scale to new topics and difficulty levels.</p>
+      </div>
+      <div class="feat-card">
+        <span class="feat-emoji">🆓</span>
+        <div class="feat-title">Free Forever</div>
+        <p class="feat-desc">DataLingo is completely free to use. No paywalls, no subscriptions — just learning.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREENSHOTS -->
+  <section id="screenshots">
+    <div class="section-header">
+      <div class="section-eyebrow">📸 App Preview</div>
+      <h2 class="section-title">See it in action</h2>
+      <p class="section-subtitle">A clean, intuitive interface designed for learners of all backgrounds.</p>
+    </div>
+    <div class="screenshots-grid">
+      <div class="screenshot-card">
+        <div class="screenshot-placeholder">🏠</div>
+        <div class="screenshot-label">
+          Landing Page
+          <div class="screenshot-sublabel">Hero with stats and CTA</div>
+        </div>
+      </div>
+      <div class="screenshot-card">
+        <div class="screenshot-placeholder">🗂️</div>
+        <div class="screenshot-label">
+          Level Selector
+          <div class="screenshot-sublabel">Choose your learning level</div>
+        </div>
+      </div>
+      <div class="screenshot-card">
+        <div class="screenshot-placeholder">📖</div>
+        <div class="screenshot-label">
+          Lesson View
+          <div class="screenshot-sublabel">Structured lesson content</div>
+        </div>
+      </div>
+      <div class="screenshot-card">
+        <div class="screenshot-placeholder">❓</div>
+        <div class="screenshot-label">
+          MCQ Quiz
+          <div class="screenshot-sublabel">Interactive quiz with difficulty rating</div>
+        </div>
+      </div>
+      <div class="screenshot-card">
+        <div class="screenshot-placeholder">💬</div>
+        <div class="screenshot-label">
+          AI Tutor Chat
+          <div class="screenshot-sublabel">Context-aware tutor widget</div>
+        </div>
+      </div>
+      <div class="screenshot-card">
+        <div class="screenshot-placeholder">📋</div>
+        <div class="screenshot-label">
+          Topic Browser
+          <div class="screenshot-sublabel">Browse lessons by topic</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH STACK -->
+  <section id="tech">
+    <div class="section-header">
+      <div class="section-eyebrow">🛠️ Tech Stack</div>
+      <h2 class="section-title">Built with modern tools</h2>
+      <p class="section-subtitle">A full-stack system combining AI workflows, a Python API, and a React frontend.</p>
+    </div>
+    <div class="tech-grid">
+      <div class="tech-col">
+        <div class="tech-col-title">🔧 Backend</div>
+        <div>
+          <span class="tech-badge">🐍 Python 3.8+</span>
+          <span class="tech-badge">⚡ FastAPI</span>
+          <span class="tech-badge">🦄 Uvicorn</span>
+          <span class="tech-badge">🤖 OpenAI SDK</span>
+          <span class="tech-badge">🗄️ Supabase</span>
+          <span class="tech-badge">📦 Pydantic</span>
+        </div>
+      </div>
+      <div class="tech-col">
+        <div class="tech-col-title">🎨 Frontend</div>
+        <div>
+          <span class="tech-badge">⚛️ Next.js 16</span>
+          <span class="tech-badge">💙 React 19</span>
+          <span class="tech-badge">📘 TypeScript</span>
+          <span class="tech-badge">🎨 Tailwind CSS</span>
+          <span class="tech-badge">📝 react-markdown</span>
+        </div>
+      </div>
+      <div class="tech-col">
+        <div class="tech-col-title">🤖 AI Pipeline</div>
+        <div>
+          <span class="tech-badge">🔄 n8n Workflows</span>
+          <span class="tech-badge">🧠 OpenAI GPT</span>
+          <span class="tech-badge">📄 JSON Datasets</span>
+          <span class="tech-badge">🔬 Jupyter</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team">
+    <div class="section-header" style="text-align: center;">
+      <div class="section-eyebrow">👥 The Team</div>
+      <h2 class="section-title">Meet the builders</h2>
+      <p class="section-subtitle" style="margin: 0 auto;">DSC 180B Capstone — University of California San Diego</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">NK</div>
+        <div class="team-name">Norah Kerendian</div>
+        <div class="team-role">Builder</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">TM</div>
+        <div class="team-name">Team Member</div>
+        <div class="team-role">Builder</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">TM</div>
+        <div class="team-name">Team Member</div>
+        <div class="team-role">Builder</div>
+      </div>
+    </div>
+    <p style="text-align: center; margin-top: 1.5rem; font-size: 0.85rem; color: var(--ink-soft);">
+      ✏️ <em>Update team member names before publishing!</em>
+    </p>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="section-eyebrow" style="background: rgba(34,197,94,0.15); color: var(--green); margin-bottom: 1.5rem;">🚀 Get Started</div>
+    <h2 class="section-title">Ready to start learning?</h2>
+    <p class="section-subtitle">Jump into DataLingo and start your data science journey today — completely free.</p>
+    <div class="cta-buttons">
+      <a href="#" class="btn-white">🚀 Launch DataLingo</a>
+      <a href="https://github.com/norahkerendian/dsc180a-q1" class="btn-ghost" target="_blank">📂 View on GitHub</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Built with ❤️ by the DataLingo team · UCSD DSC 180B Capstone 2026 · <a href="https://github.com/norahkerendian/dsc180a-q1" target="_blank">GitHub</a></p>
+  </footer>
+
+</body>
+</html>
