@@ -148,7 +148,6 @@
       transform: perspective(1000px) rotateY(-4deg) rotateX(2deg);
       transition: transform 0.4s ease;
     }
-    .mockup-frame:hover { transform: perspective(1000px) rotateY(0deg) rotateX(0deg); }
     .mockup-bar {
       background: #f0faf2; padding: 12px 16px;
       display: flex; align-items: center; gap: 8px;
@@ -195,11 +194,19 @@
     .mockup-progress-bar { background: #e8f5eb; border-radius: 999px; height: 6px; overflow: hidden; }
     .mockup-progress-fill { height: 100%; border-radius: 999px; background: var(--green); width: 60%; }
     .badge-streak {
+      z-index: 10;
       position: absolute; top: -12px; right: -12px;
       background: #f59e0b; color: white;
       font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 700;
       padding: 6px 14px; border-radius: 999px;
       box-shadow: 0 4px 12px rgba(245,158,11,0.3);
+      transform: perspective(1000px) rotateY(-4deg) rotateX(2deg);
+      transition: all 0.4s ease;
+      will-change: transform;
+    }
+    .hero-visual:hover .badge-streak,
+    .hero-visual:hover .mockup-frame {
+      transform: perspective(1000px) rotateY(0deg) rotateX(0deg) !important;
     }
 
     /* ── SECTIONS SHARED ── */
@@ -517,27 +524,27 @@
           <div class="mockup-lesson-item">
             <div class="mockup-num done">✓</div>
             <div>
-              <div class="mockup-lesson-name">Variables & Types</div>
+              <div class="mockup-lesson-name">Computational Tools</div>
               <div class="mockup-lesson-sub">Completed</div>
             </div>
           </div>
           <div class="mockup-lesson-item active">
             <div class="mockup-num prog">2</div>
             <div>
-              <div class="mockup-lesson-name">Lists & Loops</div>
+              <div class="mockup-lesson-name">Statistical Techniques</div>
               <div class="mockup-lesson-sub">In Progress ⭐</div>
             </div>
           </div>
           <div class="mockup-lesson-item">
             <div class="mockup-num lock">🔒</div>
             <div>
-              <div class="mockup-lesson-name">Functions</div>
+              <div class="mockup-lesson-name">Why Data Science?</div>
               <div class="mockup-lesson-sub">Locked</div>
             </div>
           </div>
           <div class="mockup-progress-label">
-            <span>Daily Goal Progress</span>
-            <span style="color: var(--green); font-weight: 600;">3/5 lessons</span>
+            <span>Lesson Progress</span>
+            <span style="color: var(--green); font-weight: 600;">3/5 questions</span>
           </div>
           <div class="mockup-progress-bar">
             <div class="mockup-progress-fill"></div>
@@ -571,7 +578,7 @@
           <div class="feature-icon">🎯</div>
           <div>
             <div class="feature-title">Who It's For</div>
-            <p class="feature-desc">Absolute beginners who want to learn Python and Data Science through bite-sized, gamified lessons — free, forever.</p>
+            <p class="feature-desc">Absolute beginners who want to learn Python and Data Science through bite-sized, gamified lessons. Free, forever.</p>
           </div>
         </div>
       </div>
@@ -605,7 +612,7 @@
         <div class="pipe-num">2</div>
         <div class="pipe-title">AI Generation</div>
         <p class="pipe-desc">n8n workflows apply LLM-based generation to transform content into structured lessons and MCQ datasets.</p>
-        <span class="pipe-tag">n8n · OpenAI · JSON</span>
+        <span class="pipe-tag">n8n · OpenAI · Supabase</span>
       </div>
       <div class="pipe-step">
         <div class="pipe-num">3</div>
@@ -633,7 +640,7 @@
       <div class="feat-card">
         <span class="feat-emoji">📚</span>
         <div class="feat-title">Structured Lessons</div>
-        <p class="feat-desc">Bite-sized, beginner-friendly lessons covering Python basics, statistics, and data science fundamentals — organized by topic and level.</p>
+        <p class="feat-desc">Bite-sized, beginner-friendly lessons covering Python basics, statistics, and data science fundamentals, organized by topic and level.</p>
       </div>
       <div class="feat-card">
         <span class="feat-emoji">🧩</span>
@@ -643,7 +650,7 @@
       <div class="feat-card">
         <span class="feat-emoji">🤖</span>
         <div class="feat-title">AI Tutor Chat</div>
-        <p class="feat-desc">Stuck on a question? Ask the built-in tutor for hints, explanations, or breakdowns of each answer choice — without spoiling the answer.</p>
+        <p class="feat-desc">Stuck on a question? Ask the built-in tutor for hints, explanations, or breakdowns of each answer choice, without spoiling the answer.</p>
       </div>
       <div class="feat-card">
         <span class="feat-emoji">🏆</span>
@@ -653,12 +660,12 @@
       <div class="feat-card">
         <span class="feat-emoji">🔄</span>
         <div class="feat-title">Reproducible Pipeline</div>
-        <p class="feat-desc">Lesson content is generated via an automated n8n + LLM workflow — making it easy to scale to new topics and difficulty levels.</p>
+        <p class="feat-desc">Lesson content is generated via an automated n8n + LLM workflow inspired by academic research papers, making it easy to scale to new topics and difficulty levels.</p>
       </div>
       <div class="feat-card">
         <span class="feat-emoji">🆓</span>
         <div class="feat-title">Free Forever</div>
-        <p class="feat-desc">DataLingo is completely free to use. No paywalls, no subscriptions — just learning.</p>
+        <p class="feat-desc">DataLingo is completely free to use. No paywalls, no subscriptions, just learning.</p>
       </div>
     </div>
   </section>
@@ -762,7 +769,8 @@
     <div class="section-header" style="text-align: center;">
       <div class="section-eyebrow">👥 The Team</div>
       <h2 class="section-title">Meet the builders</h2>
-      <p class="section-subtitle" style="margin: 0 auto;">DSC 180B Capstone — University of California San Diego</p>
+      <p class="section-subtitle" style="margin: 0 auto;">DSC 180B Capstone - University of California San Diego</p>
+       <p class="section-subtitle" style="margin: 0 auto;">Capstone Mentor: Dr. Benjamin Smarr</p>
     </div>
     <div class="team-grid">
       <div class="team-card">
@@ -829,7 +837,7 @@
         </div>
       </div>
       <div class="team-card">
-        <img src="headshots/eshaan.jpeg" alt="Eshaan Roy" class="team-avatar">
+        <img src="headshots/eshaan.png" alt="Eshaan Roy" class="team-avatar">
         <div class="team-name">Eshaan Roy</div>
         <div class="team-role">Recommender System Developer</div>
         <div class="team-socials">
@@ -844,7 +852,7 @@
   <section id="cta">
     <div class="section-eyebrow" style="background: rgba(34,197,94,0.15); color: var(--green); margin-bottom: 1.5rem;">🚀 Get Started</div>
     <h2 class="section-title">Ready to start learning?</h2>
-    <p class="section-subtitle">Jump into DataLingo and start your data science journey today — completely free.</p>
+    <p class="section-subtitle">Jump into DataLingo and start your data science journey today - completely free.</p>
     <div class="cta-buttons">
       <a href="#" class="btn-white">🚀 Launch DataLingo</a>
       <a href="https://github.com/norahkerendian/dsc180a-q1" class="btn-ghost" target="_blank">📂 View on GitHub</a>
